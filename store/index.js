@@ -1,10 +1,11 @@
 import * as Papa from 'papaparse'
+import { paginate, getPageCount } from '~/utils'
 
 export const state = () => ({
   labels: [],
   rows: [],
   currentPage: 1,
-  perPage: 100,
+  perPage: 75,
   name: ''
 })
 
@@ -44,14 +45,8 @@ export const actions = {
 }
 
 export const getters = {
-  getRows: (state) => (page = 1) => {
-    const offset = state.perPage * (page - 1)
-    return state.rows.slice(offset, offset + state.perPage)
-  },
-
-  pageCount: (state) => {
-    return Math.ceil(state.rows.length / state.perPage)
-  }
+  getRows: (state) => (page = 1) => paginate(state.rows, page, state.perPage),
+  pageCount: (state) => getPageCount(state.rows, state.perPage)
 }
 
 export const mutations = {

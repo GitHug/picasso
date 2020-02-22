@@ -6,7 +6,7 @@
           <th
             v-for="(label, index) in labels"
             :key="`${label}-${index}`"
-            class="py-2 px-3 bg-gray-200 font-bold uppercase text-xs text-grey-dark border-b border-gray-400 text-gray-700"
+            class="py-2 px-3 bg-gray-200 font-bold uppercase text-xs border-b border-gray-400 text-gray-700"
           >
             {{ label }}
           </th>
