@@ -93,6 +93,13 @@ describe('Store', () => {
         baz: 'foo'
       })
     })
+
+    it('should set it to the first page', () => {
+      store.state.currentPage = 42
+
+      store.dispatch('applyFilters', { foo: 'bar' })
+      expect(store.state.currentPage).toBe(1)
+    })
   })
 
   describe('filteredUsers getters', () => {

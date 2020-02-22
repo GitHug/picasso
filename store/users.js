@@ -36,6 +36,7 @@ export const actions = {
         {}
       )
     )
+    commit('SET_PAGE', 1)
   }
 }
 
