@@ -22,13 +22,13 @@
       </button>
     </div>
 
-    <GChart
+    <g-chart
       v-if="type === 'ColumnChart'"
       type="ColumnChart"
       :data="chartData"
       :options="chartOptions"
     />
-    <GChart v-else type="PieChart" :data="chartData" :options="chartOptions" />
+    <g-chart v-else type="PieChart" :data="chartData" :options="chartOptions" />
   </div>
 </template>
 
