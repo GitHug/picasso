@@ -17,7 +17,8 @@
     "@nuxtjs/pwa": "^3.0.0-beta.20",
     "file-saver": "^2.0.2",
     "nuxt": "^2.11.0",
-    "papaparse": "^5.1.1"
+    "papaparse": "^5.1.1",
+    "vuejs-paginate": "^2.1.0"
   },
   "devDependencies": {
     "@nuxtjs/eslint-config": "^2.0.2",
@@ -35,8 +36,5 @@
     "prettier": "^1.19.1",
     "vue-jest": "^3.0.5",
     "vue-jest-extended": "^0.0.4"
-  },
-  "jest": {
-    "setupTestFrameworkScriptFile": "./extensions.js"
   }
 }
