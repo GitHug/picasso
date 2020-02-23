@@ -12,8 +12,13 @@
       </nuxt-link>
       <br />
 
-      <nuxt-link class="text-teal-400 hover:underline" to="/users">
+      <nuxt-link class="hover:underline" to="/users">
         Users
+      </nuxt-link>
+      <br />
+
+      <nuxt-link class="text-teal-400 hover:underline" to="/about">
+        About
       </nuxt-link>
     </div>
   </section>

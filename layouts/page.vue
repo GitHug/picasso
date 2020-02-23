@@ -14,9 +14,15 @@
             Dashboard
           </nuxt-link>
         </li>
-        <li>
+        <li class="mr-4">
           <nuxt-link active-class="active" to="/users">
-            users
+            Users
+          </nuxt-link>
+        </li>
+
+        <li>
+          <nuxt-link active-class="active" to="/about">
+            About
           </nuxt-link>
         </li>
       </ul>
