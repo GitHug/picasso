@@ -4,7 +4,7 @@ import UsersIndexPage from '~/pages/users/index.vue'
 import * as indexStore from '~/store'
 import * as usersStore from '~/store/users'
 import UserTable from '~/components/UserTable.vue'
-import ModalOverlay from '~/components/ModalOverlay.vue'
+import UserModal from '~/components/UserModal.vue'
 
 describe('UsersIndexPage', () => {
   const localVue = createLocalVue()
@@ -53,7 +53,10 @@ describe('UsersIndexPage', () => {
     beforeEach(() => {
       wrapper = mount(UsersIndexPage, {
         localVue,
-        store
+        store,
+        stubs: {
+          LocationMap: true
+        }
       })
     })
 
@@ -61,14 +64,14 @@ describe('UsersIndexPage', () => {
       expect(wrapper.find(UserTable).exists()).toBeTruthy()
     })
 
-    it('should open a modal when a user is selected', async () => {
-      expect(wrapper.find(ModalOverlay).exists()).toBeFalsy()
+    it('should open a UserModal component when a user is selected', async () => {
+      expect(wrapper.find(UserModal).exists()).toBeFalsy()
 
       wrapper.setData({
         selectedUser: user
       })
       await wrapper.vm.$nextTick()
-      expect(wrapper.find(ModalOverlay).exists()).toBeTruthy()
+      expect(wrapper.find(UserModal).exists()).toBeTruthy()
     })
 
     it('should close the modal and remove the selected user when the modal closes', async () => {
@@ -76,26 +79,20 @@ describe('UsersIndexPage', () => {
         selectedUser: user
       })
       await wrapper.vm.$nextTick()
-      wrapper.find(ModalOverlay).vm.$emit('close')
+      wrapper.find(UserModal).vm.$emit('close')
       await wrapper.vm.$nextTick()
 
       expect(wrapper.vm.selectedUser).toBeUndefined()
-      expect(wrapper.find(ModalOverlay).exists()).toBeFalsy()
+      expect(wrapper.find(UserModal).exists()).toBeFalsy()
     })
 
-    it('should render user details in the modal', async () => {
+    it('should provide selected user as prop to the UserModal', async () => {
       wrapper.setData({
         selectedUser: user
       })
       await wrapper.vm.$nextTick()
 
-      const modal = wrapper.find(ModalOverlay)
-      expect(modal.text()).toContain(user.name)
-      expect(modal.text()).toContain(user.gender)
-      expect(modal.text()).toContain(user.age)
-      expect(modal.text()).toContain(user.eyeColor)
-      expect(modal.text()).toContain(user.preferences.pet)
-      expect(modal.text()).toContain(user.preferences.fruit)
+      expect(wrapper.find(UserModal).props('user')).toBe(user)
     })
   })
 })

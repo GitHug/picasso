@@ -1,21 +1,12 @@
 <template>
   <div>
     <transition name="fade">
-      <modal-overlay v-if="openModal" class="-mr-6" @close="modalClose">
-        <template v-slot:title>
-          {{ selectedUser.name }}
-        </template>
-
-        <template v-slot:content>
-          <article class="capitalize">
-            <p>Gender {{ selectedUser.gender }}</p>
-            <p>Eye color {{ selectedUser.eyeColor }}</p>
-            <p>Age {{ selectedUser.age }}</p>
-            <p>Favorite pet {{ selectedUser.preferences.pet }}</p>
-            <p>Favorite fruit {{ selectedUser.preferences.fruit }}</p>
-          </article>
-        </template>
-      </modal-overlay>
+      <user-modal
+        v-if="openModal"
+        class="-mr-6"
+        :user="selectedUser"
+        @close="modalClose"
+      />
     </transition>
 
     <div class="flex flex-col">
@@ -45,7 +36,7 @@
 import { mapState, mapGetters } from 'vuex'
 import UserTable from '~/components/UserTable.vue'
 import PaginationControls from '~/components/PaginationControls.vue'
-import ModalOverlay from '~/components/ModalOverlay.vue'
+import UserModal from '~/components/UserModal.vue'
 
 export default {
   layout: 'page',
@@ -53,7 +44,7 @@ export default {
   components: {
     UserTable,
     PaginationControls,
-    ModalOverlay
+    UserModal
   },
 
   fetch({ store }) {
