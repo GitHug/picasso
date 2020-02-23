@@ -5,47 +5,60 @@
         <th>
           <input
             type="input"
-            placeholder="Filter id"
-            @input="updateFilters({ id: $event.target.value || '' })"
+            placeholder="Name"
+            @input="updateFilters({ name: $event.target.value || '' })"
           />
         </th>
-        <th>
+        <th class="w-1/6">
           <input
             type="input"
-            placeholder="Filter username"
-            @input="updateFilters({ login: $event.target.value || '' })"
+            placeholder="Gender"
+            @input="updateFilters({ gender: $event.target.value || '' })"
           />
         </th>
-        <th>
+        <th class="w-1/6">
           <input
             type="input"
-            placeholder="Filter contributions"
-            @input="updateFilters({ contributions: $event.target.value || '' })"
+            placeholder="Eye color"
+            @input="updateFilters({ eyeColor: $event.target.value || '' })"
+          />
+        </th>
+        <th class="w-1/6">
+          <input
+            type="input"
+            placeholder="Age"
+            @input="updateFilters({ age: $event.target.value || '' })"
           />
         </th>
       </tr>
       <tr>
         <th>
-          id
+          Name
         </th>
         <th>
-          username
+          Gender
         </th>
         <th>
-          contribution
+          EyeColor
+        </th>
+        <th>
+          Age
         </th>
       </tr>
     </thead>
     <tbody>
-      <tr v-for="user in users" :key="user.id">
+      <tr v-for="user in users" :key="user.id" class="capitalize">
         <td>
-          {{ user.id }}
+          {{ user.name }}
         </td>
         <td>
-          {{ user.login }}
+          {{ user.gender }}
         </td>
         <td>
-          {{ user.contributions }}
+          {{ user.eyeColor }}
+        </td>
+        <td>
+          {{ user.age }}
         </td>
       </tr>
     </tbody>
@@ -62,20 +75,22 @@ export default {
     filters: {
       type: Object,
       default: () => ({
-        id: '',
-        login: '',
-        contributions: ''
+        name: '',
+        gender: '',
+        eyeColor: '',
+        age: ''
       })
     }
   },
 
   methods: {
     updateFilters({
-      id = this.filters.id,
-      login = this.filters.login,
-      contributions = this.filters.contributions
+      name = this.filters.name,
+      gender = this.filters.gender,
+      eyeColor = this.filters.eyeColor,
+      age = this.filters.age
     }) {
-      this.$emit('updateFilters', { id, login, contributions })
+      this.$emit('updateFilters', { name, gender, eyeColor, age })
     }
   }
 }

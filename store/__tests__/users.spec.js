@@ -15,33 +15,47 @@ describe('Store', () => {
     store.$api = api
   })
 
-  const users = [
-    {
-      id: 1,
-      login: 'Foo',
-      contributions: 11
-    },
-    {
-      id: 2,
-      login: 'Bar',
-      contributions: 22
-    },
-    {
-      id: 3,
-      login: 'Baz',
-      contributions: 23
-    },
-    {
-      id: 4,
-      login: 'Qux',
-      contributions: 42
-    },
-    {
-      id: 5,
-      login: 'Quux',
-      contributions: 19
-    }
-  ]
+  const user1 = {
+    _id: '5d5d7ad6b0e83bc2d9d67dfb',
+    age: 28,
+    eyeColor: 'brown',
+    name: 'Stephens Townsend',
+    gender: 'male'
+  }
+
+  const user2 = {
+    _id: '5d5d7ad67879dec8b9286d51',
+    age: 27,
+    eyeColor: 'blue',
+    name: 'Aida Townsend',
+    gender: 'female'
+  }
+
+  const user3 = {
+    _id: '5d5d7ad69975c19b54ba1b73',
+    age: 33,
+    eyeColor: 'green',
+    name: 'Mercado West',
+    gender: 'male'
+  }
+
+  const user4 = {
+    _id: '5d5d7ad6b0518f619b88c330',
+    age: 34,
+    eyeColor: 'brown',
+    name: 'Berry Fletcher',
+    gender: 'male'
+  }
+
+  const user5 = {
+    _id: '5d5d7ad67534839ac2910e6b',
+    age: 34,
+    eyeColor: 'green',
+    name: 'Deloris Perkins',
+    gender: 'female'
+  }
+
+  const users = [user1, user2, user3, user4, user5]
 
   describe('fetchUsers action', () => {
     it('should call the fetch user api', () => {
@@ -103,13 +117,15 @@ describe('Store', () => {
     })
 
     it.each([
-      [{ id: '5' }, [users[4]]],
-      [{ id: '6' }, []],
-      [{ login: 'ba' }, [users[1], users[2]]],
-      [{ login: 'test' }, []],
-      [{ contributions: 2 }, [users[1], users[2], users[3]]],
-      [{ contributions: 12 }, []],
-      [{ login: 'ba', contributions: 2 }, [users[1], users[2]]]
+      [{ name: 'townsend' }, [user1, user2]],
+      [{ name: 'foo' }, []],
+      [{ gender: 'female' }, [user2, user5]],
+      [{ gender: 'alien' }, []],
+      [{ eyeColor: 'brown' }, [user1, user4]],
+      [{ eyeColor: 'pink' }, []],
+      [{ age: '3' }, [user3, user4, user5]],
+      [{ age: '100' }, []],
+      [{ name: 'townsend', gender: 'female' }, [user2]]
     ])(
       'should filter out users that does not match filter %j',
       (filter, expected) => {
@@ -130,20 +146,20 @@ describe('Store', () => {
     })
 
     it('should get the first page of the paginated result if no argument is provided', () => {
-      expect(getUsers()).toEqual([users[0], users[1]])
+      expect(getUsers()).toEqual([user1, user2])
     })
 
     test('the result set size depends on the perPage value', () => {
       store.state.perPage = 3
-      expect(getUsers()).toEqual([users[0], users[1], users[2]])
+      expect(getUsers()).toEqual([user1, user2, user3])
     })
 
     it('should get the results on the provided page', () => {
-      expect(getUsers(2)).toEqual([users[2], users[3]])
+      expect(getUsers(2)).toEqual([user3, user4])
     })
 
     it('should return a partial return set if not a full page exists on the requested page', () => {
-      expect(getUsers(3)).toEqual([users[4]])
+      expect(getUsers(3)).toEqual([user5])
     })
 
     it('should return an empty array if the page does not exist', () => {
@@ -151,9 +167,9 @@ describe('Store', () => {
     })
 
     test('the result should be paginated over filtered users', () => {
-      store.state.perPage = 3
-      store.state.filters = { login: 'ba' }
-      expect(getUsers(1)).toEqual([users[1], users[2]])
+      store.state.perPage = 1
+      store.state.filters = { gender: 'female' }
+      expect(getUsers(1)).toEqual([user2])
     })
   })
 
@@ -173,7 +189,7 @@ describe('Store', () => {
     })
 
     test('the page count should be applied to filtered users', () => {
-      store.state.filters = { contributions: '2' }
+      store.state.filters = { age: '3' }
       store.state.perPage = 2
 
       expect(store.getters.pageCount).toBe(2)

@@ -2,7 +2,7 @@ import { paginate, getPageCount } from '~/utils'
 
 export const state = () => ({
   users: [],
-  perPage: 75,
+  perPage: 25,
   currentPage: 1,
   filters: {
     id: '',
@@ -42,14 +42,13 @@ export const actions = {
 export const getters = {
   filteredUsers: (state) => {
     const { users, filters } = state
-    const { id = '', login = '', contributions = '' } = filters
+    const { name = '', eyeColor = '', gender = '', age = '' } = filters
 
     return users
-      .filter((user) => (user.id + '').toLowerCase().includes(id))
-      .filter((user) => user.login.toLowerCase().includes(login))
-      .filter((user) =>
-        (user.contributions + '').toLowerCase().includes(contributions)
-      )
+      .filter((user) => user.name.toLowerCase().includes(name))
+      .filter((user) => user.eyeColor.toLowerCase().includes(eyeColor))
+      .filter((user) => user.gender.toLowerCase().includes(gender))
+      .filter((user) => (user.age + '').includes(age))
   },
 
   getUsers: (state, getters) => (page = 1) => {
