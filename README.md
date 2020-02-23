@@ -2,6 +2,12 @@
 
 > Picasso Dashboard
 
+This is a demo app uploading .csv files and dynamically editing data. It also has capability to search for users and display their details.
+
+To get started, drag or select a (valid) .csv file from the file dropzone when you are on the Dashboard page.
+
+A demo can be found [here](https://picasso.takanoha.io).
+
 ## Build Setup
 
 ``` bash
@@ -18,5 +24,3 @@ $ yarn start
 # generate static project
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).
