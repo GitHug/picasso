@@ -1,7 +1,9 @@
 import { mount } from '@vue/test-utils'
-import DataVisualizer, { PIE } from '~/components/DataVisualizer.vue'
-import BarChart from '~/components/BarChart.vue'
-import PieChart from '~/components/PieChart.vue'
+import DataVisualizer, {
+  PIE
+} from '~/components/visualizations/DataVisualizer.vue'
+import BarChart from '~/components/visualizations/BarChart.vue'
+import PieChart from '~/components/visualizations/PieChart.vue'
 import { twPluginMock } from '~/testSuiteSetup'
 
 describe('DataVisualizer', () => {

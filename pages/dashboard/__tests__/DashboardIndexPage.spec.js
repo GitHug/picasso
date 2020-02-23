@@ -6,7 +6,7 @@ import * as rootStore from '~/store'
 import DownloadJson from '~/components/DownloadJson.vue'
 import DataTable from '~/components/DataTable.vue'
 import PaginationControls from '~/components/PaginationControls.vue'
-import DataVisualizer from '~/components/DataVisualizer.vue'
+import DataVisualizer from '~/components/visualizations/DataVisualizer.vue'
 
 describe('DashboardIndexPage', () => {
   const localVue = createLocalVue()

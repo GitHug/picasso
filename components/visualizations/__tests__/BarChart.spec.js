@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { GChart } from 'vue-google-charts'
-import BarChart from '~/components/BarChart'
+import BarChart from '~/components/visualizations/BarChart'
 
 describe('BarChart', () => {
   let wrapper

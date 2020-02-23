@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import { GChart } from 'vue-google-charts'
-import PieChart from '~/components/PieChart'
+import PieChart from '~/components/visualizations/PieChart'
 import { twPluginMock } from '~/testSuiteSetup'
 
 describe('PieChart', () => {

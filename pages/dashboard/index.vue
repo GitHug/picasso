@@ -43,7 +43,7 @@ import FileUploader from '~/components/FileUploader.vue'
 import DataTable from '~/components/DataTable.vue'
 import DownloadJson from '~/components/DownloadJson.vue'
 import PaginationControls from '~/components/PaginationControls.vue'
-import DataVisualizer from '~/components/DataVisualizer.vue'
+import DataVisualizer from '~/components/visualizations/DataVisualizer.vue'
 
 export default {
   layout: 'page',

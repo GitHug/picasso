@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import BarChart from '~/components/BarChart.vue'
-import PieChart from '~/components/PieChart.vue'
+import BarChart from '~/components/visualizations/BarChart.vue'
+import PieChart from '~/components/visualizations/PieChart.vue'
 
 export const { BAR, PIE } = {
   BAR: 'bar',
