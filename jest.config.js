@@ -7,12 +7,14 @@ module.exports = {
   moduleFileExtensions: ['js', 'vue', 'json'],
   transform: {
     '^.+\\.js$': 'babel-jest',
-    '.*\\.(vue)$': 'vue-jest'
+    '^.+\\.vue$': 'vue-jest'
   },
   collectCoverage: true,
   collectCoverageFrom: [
-    '<rootDir>/components/**/*.vue',
-    '<rootDir>/pages/**/*.vue'
+    'store/**/*.js',
+    'components/**/*.vue',
+    'pages/**/*.vue'
   ],
+  reporters: ['default'],
   setupFilesAfterEnv: ['<rootDir>/testSuiteSetup.js']
 }

@@ -1,6 +1,6 @@
-# suade-labs
+# Picasso
 
-> Suade Labs JS Challenge 2020
+> Picasso Dashboard
 
 ## Build Setup
 
