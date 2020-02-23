@@ -40,9 +40,9 @@
 <script>
 import { mapState, mapGetters, mapActions } from 'vuex'
 import FileUploader from '~/components/FileUploader.vue'
-import DataTable from '~/components/DataTable.vue'
 import DownloadJson from '~/components/DownloadJson.vue'
-import PaginationControls from '~/components/PaginationControls.vue'
+import DataTable from '~/components/tables/DataTable.vue'
+import PaginationControls from '~/components/tables/PaginationControls.vue'
 import DataVisualizer from '~/components/visualizations/DataVisualizer.vue'
 
 export default {

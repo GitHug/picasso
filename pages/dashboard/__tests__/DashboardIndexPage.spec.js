@@ -4,8 +4,8 @@ import DashboardIndexPage from '~/pages/dashboard/index.vue'
 import FileUploader from '~/components/FileUploader.vue'
 import * as rootStore from '~/store'
 import DownloadJson from '~/components/DownloadJson.vue'
-import DataTable from '~/components/DataTable.vue'
-import PaginationControls from '~/components/PaginationControls.vue'
+import DataTable from '~/components/tables/DataTable.vue'
+import PaginationControls from '~/components/tables/PaginationControls.vue'
 import DataVisualizer from '~/components/visualizations/DataVisualizer.vue'
 
 describe('DashboardIndexPage', () => {

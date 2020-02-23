@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import DataTable from '~/components/DataTable.vue'
+import DataTable from '~/components/tables/DataTable.vue'
 
 describe('DataTable', () => {
   let wrapper

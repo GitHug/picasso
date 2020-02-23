@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import Paginate from 'vuejs-paginate'
-import PaginationControls from '~/components/PaginationControls.vue'
+import PaginationControls from '~/components/tables/PaginationControls.vue'
 
 describe('PaginationControls', () => {
   let wrapper
