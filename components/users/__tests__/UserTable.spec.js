@@ -1,5 +1,5 @@
 import { mount } from '@vue/test-utils'
-import UserTable from '~/components/UserTable'
+import UserTable from '~/components//users/UserTable'
 
 describe('UserTable', () => {
   const user1 = {

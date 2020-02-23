@@ -3,8 +3,8 @@ import Vuex from 'vuex'
 import UsersIndexPage from '~/pages/users/index.vue'
 import * as indexStore from '~/store'
 import * as usersStore from '~/store/users'
-import UserTable from '~/components/UserTable.vue'
-import UserModal from '~/components/UserModal.vue'
+import UserTable from '~/components/users/UserTable.vue'
+import UserModal from '~/components/users/UserModal.vue'
 
 describe('UsersIndexPage', () => {
   const localVue = createLocalVue()

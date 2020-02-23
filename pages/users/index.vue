@@ -34,9 +34,9 @@
 
 <script>
 import { mapState, mapGetters } from 'vuex'
-import UserTable from '~/components/UserTable.vue'
 import PaginationControls from '~/components/PaginationControls.vue'
-import UserModal from '~/components/UserModal.vue'
+import UserTable from '~/components//users/UserTable.vue'
+import UserModal from '~/components//users/UserModal.vue'
 
 export default {
   layout: 'page',

@@ -1,6 +1,6 @@
 import { mount } from '@vue/test-utils'
 import ModalOverlay from '~/components/ModalOverlay.vue'
-import UserModal from '~/components/UserModal.vue'
+import UserModal from '~/components/users/UserModal.vue'
 import LocationMap from '~/components/LocationMap.vue'
 
 describe('UserModal', () => {
