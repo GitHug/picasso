@@ -2,32 +2,32 @@ import { mount } from '@vue/test-utils'
 import UserTable from '~/components/UserTable'
 
 describe('UserTable', () => {
+  const user1 = {
+    _id: '5d5d7ad6b0e83bc2d9d67dfb',
+    age: 28,
+    eyeColor: 'brown',
+    name: 'Stephens Townsend',
+    gender: 'male'
+  }
+
+  const user2 = {
+    _id: '5d5d7ad67879dec8b9286d51',
+    age: 27,
+    eyeColor: 'blue',
+    name: 'Aida Mccarty',
+    gender: 'female'
+  }
+
   let wrapper
   beforeEach(() => {
-    wrapper = mount(UserTable)
+    wrapper = mount(UserTable, {
+      propsData: {
+        users: [user1, user2]
+      }
+    })
   })
 
-  it('should render users', async () => {
-    const user1 = {
-      _id: '5d5d7ad6b0e83bc2d9d67dfb',
-      age: 28,
-      eyeColor: 'brown',
-      name: 'Stephens Townsend',
-      gender: 'male'
-    }
-
-    const user2 = {
-      _id: '5d5d7ad67879dec8b9286d51',
-      age: 27,
-      eyeColor: 'blue',
-      name: 'Aida Mccarty',
-      gender: 'female'
-    }
-
-    const users = [user1, user2]
-    wrapper.setProps({ users })
-    await wrapper.vm.$nextTick()
-
+  it('should render users', () => {
     expect(wrapper.findAll('tbody tr')).toHaveLength(2)
 
     const query = ({ row, column }) =>
@@ -78,5 +78,34 @@ describe('UserTable', () => {
         })
       }
     )
+  })
+
+  it('should emit a user when a row is selected', () => {
+    wrapper
+      .findAll('tbody tr')
+      .at(1)
+      .trigger('click')
+    expect(wrapper).toHaveEmitted('update:selectedUser', user2)
+  })
+
+  it('should give a teal background to a selected user', async () => {
+    wrapper.setProps({
+      selectedUser: user1
+    })
+    await wrapper.vm.$nextTick()
+
+    expect(
+      wrapper
+        .findAll('tbody tr')
+        .at(0)
+        .classes()
+    ).toEqual(expect.arrayContaining([expect.stringContaining('teal')]))
+
+    expect(
+      wrapper
+        .findAll('tbody tr')
+        .at(1)
+        .classes()
+    ).not.toEqual(expect.arrayContaining([expect.stringContaining('teal')]))
   })
 })

@@ -47,7 +47,15 @@
       </tr>
     </thead>
     <tbody>
-      <tr v-for="user in users" :key="user.id" class="capitalize">
+      <tr
+        v-for="user in users"
+        :key="user.id"
+        class="capitalize cursor-default"
+        :class="{
+          'bg-teal-400 hover:bg-teal-400': selectedUser === user
+        }"
+        @click="$emit('update:selectedUser', user)"
+      >
         <td>
           {{ user.name }}
         </td>
@@ -80,6 +88,10 @@ export default {
         eyeColor: '',
         age: ''
       })
+    },
+    selectedUser: {
+      type: Object,
+      default: () => ({})
     }
   },
 
