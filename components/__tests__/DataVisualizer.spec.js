@@ -1,15 +1,30 @@
 import { mount } from '@vue/test-utils'
-import { GChart } from 'vue-google-charts'
-import DataVisualizer from '~/components/DataVisualizer.vue'
+import DataVisualizer, { PIE } from '~/components/DataVisualizer.vue'
+import BarChart from '~/components/BarChart.vue'
+import PieChart from '~/components/PieChart.vue'
+import { twPluginMock } from '~/testSuiteSetup'
 
 describe('DataVisualizer', () => {
   let wrapper
   beforeEach(() => {
     wrapper = mount(DataVisualizer, {
       stubs: {
-        GChart: true
+        GChart: true,
+        Transition: {
+          render(h) {
+            return h('div', this.$slots.default)
+          }
+        }
+      },
+      mocks: {
+        $tw: twPluginMock
       }
     })
+  })
+
+  it('should render as bar chart when mounted', () => {
+    expect(wrapper.find(BarChart).exists()).toBeTruthy()
+    expect(wrapper.find(PieChart).exists()).toBeFalsy()
   })
 
   it('should set the first non-numeric column to be the first column', async () => {
@@ -24,7 +39,7 @@ describe('DataVisualizer', () => {
     })
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.find(GChart).props('data')[0][0]).toBe('def')
+    expect(wrapper.find(BarChart).props('chartData')[0][0]).toBe('def')
   })
 
   it('should should only pick columns with numeric values for subsequent columns', async () => {
@@ -39,7 +54,7 @@ describe('DataVisualizer', () => {
     })
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.find(GChart).props('data')).toEqual([
+    expect(wrapper.find(BarChart).props('chartData')).toEqual([
       ['def', 'abc'],
       ['foo', 123]
     ])
@@ -57,29 +72,30 @@ describe('DataVisualizer', () => {
     })
     await wrapper.vm.$nextTick()
 
-    expect(wrapper.find(GChart).props('data')).toEqual([
+    expect(wrapper.find(BarChart).props('chartData')).toEqual([
       ['abc', 'def', 'ghi'],
       ['123', 456, 789]
     ])
   })
 
-  it('should render as bar chart when mounted', () => {
-    expect(wrapper.find(GChart).props('type')).toBe('ColumnChart')
-  })
-
   it('should render as pie chart when the pie chart button is clicked', async () => {
     wrapper.find('button[title="Pie Chart"]').trigger('click')
     await wrapper.vm.$nextTick()
-    expect(wrapper.find(GChart).props('type')).toBe('PieChart')
+    expect(wrapper.find(PieChart).exists()).toBeTruthy()
+    expect(wrapper.find(BarChart).exists()).toBeFalsy()
   })
 
   it('should render as bar chart when the bar chart button is clicked', async () => {
     wrapper.setData({
-      type: 'PieChart'
+      chart: PIE
     })
+    await wrapper.vm.$nextTick()
+    expect(wrapper.find(PieChart).exists()).toBeTruthy()
 
     wrapper.find('button[title="Bar Chart"]').trigger('click')
     await wrapper.vm.$nextTick()
-    expect(wrapper.find(GChart).props('type')).toBe('ColumnChart')
+
+    expect(wrapper.find(PieChart).exists()).toBeFalsy()
+    expect(wrapper.find(BarChart).exists()).toBeTruthy()
   })
 })

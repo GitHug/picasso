@@ -7,7 +7,6 @@ export const state = () => ({
   filters: {
     id: '',
     login: '',
-    url: '',
     contributions: ''
   }
 })
@@ -43,12 +42,11 @@ export const actions = {
 export const getters = {
   filteredUsers: (state) => {
     const { users, filters } = state
-    const { id = '', login = '', url = '', contributions = '' } = filters
+    const { id = '', login = '', contributions = '' } = filters
 
     return users
       .filter((user) => (user.id + '').toLowerCase().includes(id))
       .filter((user) => user.login.toLowerCase().includes(login))
-      .filter((user) => user.url.toLowerCase().includes(url))
       .filter((user) =>
         (user.contributions + '').toLowerCase().includes(contributions)
       )

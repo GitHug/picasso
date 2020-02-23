@@ -1,24 +1,16 @@
 <template>
   <div class="overflow-scroll">
-    <table class="text-left w-full border-collapse">
+    <table class="w-full">
       <thead>
         <tr>
-          <th
-            v-for="(label, index) in labels"
-            :key="`${label}-${index}`"
-            class="py-2 px-3 bg-gray-200 font-bold uppercase text-xs border-b border-gray-400 text-gray-700"
-          >
+          <th v-for="(label, index) in labels" :key="`${label}-${index}`">
             {{ label }}
           </th>
         </tr>
       </thead>
       <tbody>
-        <tr v-for="(row, index) in rows" :key="index" class="hover:bg-gray-300">
-          <td
-            v-for="[key, value] in Object.entries(row)"
-            :key="key"
-            class="py-2 px-3 border-b border-gray-400 text-sm text-gray-800"
-          >
+        <tr v-for="(row, index) in rows" :key="index">
+          <td v-for="[key, value] in Object.entries(row)" :key="key">
             <input
               type="input"
               :value="value"

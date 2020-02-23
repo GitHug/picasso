@@ -33,14 +33,14 @@ export default {
   data() {
     return {
       styles: {
-        containerClass: 'flex justify-evenly',
+        containerClass: 'flex',
         pageClass: 'page',
-        pageLinkClass: 'page-link',
+        pageLinkClass: 'link',
         activeClass: 'active',
         nextClass: 'page',
-        nextLinkClass: 'page-link',
+        nextLinkClass: 'link',
         prevClass: 'page',
-        prevLinkClass: 'page-link'
+        prevLinkClass: 'link'
       }
     }
   },
@@ -65,23 +65,30 @@ export default {
 
 <style scoped>
 /deep/ .page {
-  @apply flex-1 bg-white border border-orange-300 text-center px-2;
-  flex: 1 1 0px;
+  @apply mr-2 text-teal-400 border border-teal-400;
 }
 
-/deep/ .page:hover:not(.active-class) {
-  @apply bg-orange-500;
+/deep/ .page.active {
+  @apply bg-teal-500 text-white cursor-default;
 }
 
-/deep/ .page-link {
-  @apply flex-1 justify-center;
+/deep/ .page:not(.disabled) {
+  @apply cursor-pointer;
 }
 
-/deep/ .active {
-  @apply bg-orange-700 text-white cursor-default outline-none;
+/deep/ .link {
+  @apply block rounded-sm font-bold py-1 px-2 flex items-center text-sm;
 }
 
-/deep/ .active .page-link-class {
-  @apply cursor-default;
+/deep/ .link:hover {
+  @apply bg-teal-400 text-white;
+}
+
+/deep/ .page.disabled {
+  @apply text-teal-700 border-teal-700 cursor-default;
+}
+
+/deep/ .page.disabled .link:hover {
+  @apply text-teal-700 border-teal-700 bg-gray-800;
 }
 </style>

@@ -1,7 +1,7 @@
 {
-  "name": "suade-labs",
+  "name": "picasso",
   "version": "1.0.0",
-  "description": "Suade Labs JS Challenge 2020",
+  "description": "Picasso",
   "author": "Fredrik Mäkilä",
   "private": true,
   "scripts": {

@@ -1,12 +1,12 @@
 <template>
-  <div>
-    <div class="flex">
+  <div style="min-height: 500px;">
+    <div class="flex mb-4">
       <button
         type="button"
         title="Bar Chart"
-        class="border border-orange-600 py-1 px-3"
-        :class="{ 'bg-orange-700': type === 'ColumnChart' }"
-        @click="type = 'ColumnChart'"
+        class="button"
+        :class="{ 'button--active': chart === BAR }"
+        @click="chart = BAR"
       >
         Bar Chart
       </button>
@@ -14,30 +14,36 @@
       <button
         type="button"
         title="Pie Chart"
-        class="border border-orange-600 py-1 px-3"
-        :class="{ 'bg-orange-700': type === 'PieChart' }"
-        @click="type = 'PieChart'"
+        class="button"
+        :class="{ 'button--active': chart === PIE }"
+        @click="chart = PIE"
       >
         Pie Chart
       </button>
     </div>
 
-    <g-chart
-      v-if="type === 'ColumnChart'"
-      type="ColumnChart"
-      :data="chartData"
-      :options="chartOptions"
-    />
-    <g-chart v-else type="PieChart" :data="chartData" :options="chartOptions" />
+    <keep-alive>
+      <transition name="fade" mode="out-in">
+        <bar-chart v-if="chart === BAR" :chart-data="chartData" :name="name" />
+        <pie-chart v-else :chart-data="chartData" :name="name" />
+      </transition>
+    </keep-alive>
   </div>
 </template>
 
 <script>
-import { GChart } from 'vue-google-charts'
+import BarChart from '~/components/BarChart.vue'
+import PieChart from '~/components/PieChart.vue'
+
+export const { BAR, PIE } = {
+  BAR: 'bar',
+  PIE: 'pie'
+}
 
 export default {
   components: {
-    GChart
+    BarChart,
+    PieChart
   },
 
   props: {
@@ -45,16 +51,15 @@ export default {
       type: Array,
       default: () => []
     },
-    labels: {
-      type: Array,
-      default: () => []
+    name: {
+      type: String,
+      default: 'Data'
     }
   },
 
   data() {
     return {
-      type: 'ColumnChart',
-      chartOptions: {}
+      chart: BAR
     }
   },
 
@@ -83,6 +88,10 @@ export default {
     }
   },
 
+  created() {
+    Object.assign(this, { BAR, PIE })
+  },
+
   methods: {
     isNumber(value) {
       return !isNaN(value)
@@ -101,6 +110,10 @@ export default {
       return Object.entries(firstRow)
         .filter(([key, value]) => key !== firstLabel && this.isNumber(value))
         .map(([key, value]) => key)
+    },
+
+    onChartReady(chart, google) {
+      this.chartsLib = google
     }
   }
 }

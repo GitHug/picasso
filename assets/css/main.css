@@ -1,0 +1,31 @@
+.button {
+  @apply border border-teal-400 text-teal-400 block rounded-sm font-bold py-1 px-3 text-sm;
+}
+
+.button:hover {
+  @apply bg-teal-400 text-gray-100;
+}
+
+.button.button--active {
+  @apply bg-teal-400 text-gray-100;
+}
+
+table {
+  @apply text-left border-collapse;
+}
+
+table thead th {
+  @apply py-2 px-3 bg-gray-900 font-bold uppercase text-xs text-gray-500;
+}
+
+table tbody tr:hover {
+  @apply bg-gray-700;
+}
+
+table tbody td {
+  @apply py-2 px-3 border-b border-b border-gray-700 text-sm text-gray-300;
+}
+
+input[type="input"] {
+  @apply bg-gray-900 border border border-gray-700 w-full text-gray-300;
+}

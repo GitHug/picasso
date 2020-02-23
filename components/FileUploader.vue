@@ -1,8 +1,8 @@
 <template>
   <div
-    class="border border-dashed border-gray-500 relative"
+    class="relative"
     :class="{
-      'bg-green-500': state === DRAGGING
+      'bg-teal-400': state === DRAGGING
     }"
     @drop.prevent="dispatchAction('drop', $event)"
     @dragover.prevent

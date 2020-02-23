@@ -30,7 +30,7 @@ describe('PaginationControls', () => {
   it('should emit a page change event when the pagination controls are clicked', () => {
     const page3 = wrapper
       .find(Paginate)
-      .findAll('.page-link')
+      .findAll('.link')
       .at(3)
 
     expect(page3.text()).toBe('3')

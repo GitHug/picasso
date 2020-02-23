@@ -2,10 +2,6 @@ import { createLocalVue } from '@vue/test-utils'
 import Vuex from 'vuex'
 import * as usersStore from '~/store/users'
 
-jest.mock('papaparse', () => ({
-  parse: (file, { complete }) => complete(file)
-}))
-
 describe('Store', () => {
   const localVue = createLocalVue()
   localVue.use(Vuex)
@@ -23,31 +19,26 @@ describe('Store', () => {
     {
       id: 1,
       login: 'Foo',
-      url: 'www.example.com',
       contributions: 11
     },
     {
       id: 2,
       login: 'Bar',
-      url: 'www.test.org',
       contributions: 22
     },
     {
       id: 3,
       login: 'Baz',
-      url: 'github.com',
       contributions: 23
     },
     {
       id: 4,
       login: 'Qux',
-      url: 'test.org',
       contributions: 42
     },
     {
       id: 5,
       login: 'Quux',
-      url: 'myspace.com',
       contributions: 19
     }
   ]
@@ -116,11 +107,9 @@ describe('Store', () => {
       [{ id: '6' }, []],
       [{ login: 'ba' }, [users[1], users[2]]],
       [{ login: 'test' }, []],
-      [{ url: '.com' }, [users[0], users[2], users[4]]],
-      [{ url: '.io' }, []],
       [{ contributions: 2 }, [users[1], users[2], users[3]]],
       [{ contributions: 12 }, []],
-      [{ login: 'ba', url: '.', contributions: 2 }, [users[1], users[2]]]
+      [{ login: 'ba', contributions: 2 }, [users[1], users[2]]]
     ])(
       'should filter out users that does not match filter %j',
       (filter, expected) => {
@@ -184,7 +173,7 @@ describe('Store', () => {
     })
 
     test('the page count should be applied to filtered users', () => {
-      store.state.filters = { url: '.com' }
+      store.state.filters = { contributions: '2' }
       store.state.perPage = 2
 
       expect(store.getters.pageCount).toBe(2)

@@ -1,9 +1,5 @@
 <template>
-  <button
-    type="button"
-    class="bg-orange-400 border border-orange-800 p-px rounded-sm"
-    @click="download"
-  >
+  <button type="button" @click="download">
     Download JSON
   </button>
 </template>

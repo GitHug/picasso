@@ -12,13 +12,11 @@ describe('UserTable', () => {
       {
         id: 42,
         login: 'Foo',
-        url: 'example.com',
         contributions: 19
       },
       {
         id: 19,
         login: 'Bar',
-        url: 'test.org',
         contributions: 42
       }
     ]
@@ -37,20 +35,17 @@ describe('UserTable', () => {
 
     expect(query({ row: 0, column: 0 })).toBe('42')
     expect(query({ row: 0, column: 1 })).toBe('Foo')
-    expect(query({ row: 0, column: 2 })).toBe('example.com')
-    expect(query({ row: 0, column: 3 })).toBe('19')
+    expect(query({ row: 0, column: 2 })).toBe('19')
 
     expect(query({ row: 1, column: 0 })).toBe('19')
     expect(query({ row: 1, column: 1 })).toBe('Bar')
-    expect(query({ row: 1, column: 2 })).toBe('test.org')
-    expect(query({ row: 1, column: 3 })).toBe('42')
+    expect(query({ row: 1, column: 2 })).toBe('42')
   })
 
   describe('when a filter is updated', () => {
     const filters = {
       id: '42',
       login: 'Githug',
-      url: 'myspace.com',
       contributions: '0'
     }
 
@@ -61,8 +56,7 @@ describe('UserTable', () => {
     it.each([
       [0, 'id', '19'],
       [1, 'login', 'Blub'],
-      [2, 'url', 'wikipedia.org'],
-      [3, 'contributions', '200']
+      [2, 'contributions', '200']
     ])(
       'should emit an event with the updated value corresponding to column %s (%s)',
       (index, key, value) => {

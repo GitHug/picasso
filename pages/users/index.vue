@@ -1,18 +1,20 @@
 <template>
-  <div class="flex flex-col h-screen">
-    <div class="overflow-auto mb-24">
+  <div class="flex flex-col">
+    <div class="mb-24 flex">
       <user-table
         :users="users"
         :filters="filters"
+        class="w-full"
         @updateFilters="$store.dispatch('users/applyFilters', $event)"
       />
     </div>
-    <div class="flex justify-center">
-      <div class="fixed bottom-0 items-center p-4">
+    <div class="w-full">
+      <div
+        class="fixed bottom-0 p-4 bg-gray-800 mx-auto w-full flex justify-center"
+      >
         <pagination-controls
           :current-page="currentPage"
           :page-count="pageCount"
-          class=""
           @pageChange="$store.dispatch('users/setPage', $event)"
         />
       </div>
