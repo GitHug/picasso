@@ -1,7 +1,7 @@
 <template>
   <div>
     <p>
-      This is a demo app uploading .CSV files and dynamically editing data. It
+      This is a demo app uploading .csv files and dynamically editing data. It
       also has capability to search for users and display their details.
     </p>
     <br />
