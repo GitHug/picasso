@@ -13,7 +13,7 @@ describe('LocationMap', () => {
         longitude
       },
       stubs: {
-        NoSsr: true,
+        ClientOnly: true,
         LMap: {
           name: 'LMap',
           props: ['center'],
