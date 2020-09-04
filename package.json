@@ -18,7 +18,7 @@
     "file-saver": "^2.0.2",
     "nuxt": "^2.11.0",
     "nuxt-leaflet": "^0.0.19",
-    "papaparse": "^5.1.1",
+    "papaparse": "^5.2.0",
     "vue-google-charts": "^0.3.2",
     "vuejs-paginate": "^2.1.0"
   },
